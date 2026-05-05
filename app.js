@@ -686,5 +686,59 @@ function wireHandlers() {
   }
 }
 
+function renderGallery() {
+  const grid = document.getElementById("galleryGrid");
+  if (!grid) return;
+
+  const allKeys = [...STTI_KEYS, "6L6"];
+  grid.innerHTML = "";
+
+  allKeys.forEach((key) => {
+    const t = TYPE_LIBRARY[key];
+    if (!t) return;
+    const src = TYPE_IMAGE_SRC[key];
+
+    const card = document.createElement("div");
+    card.className = "gallery-card";
+    card.id = "gallery-" + key;
+
+    const imgHtml = src
+      ? `<img class="gallery-card-img" src="${src}" alt="${t.code} ${t.cn}" loading="lazy" decoding="async" />`
+      : `<div class="gallery-card-placeholder"></div>`;
+
+    card.innerHTML = `
+      <div class="gallery-card-head">
+        ${imgHtml}
+        <div class="gallery-card-info">
+          <div class="gallery-card-code">${t.code}</div>
+          <div class="gallery-card-cn">${t.cn}</div>
+        </div>
+      </div>
+      <p class="gallery-card-intro">${t.intro}</p>
+      <div class="gallery-card-desc">
+        <p>${t.desc}</p>
+      </div>`;
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("expanded");
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function handleGalleryHash() {
+  const hash = window.location.hash.replace("#", "");
+  if (!hash || !TYPE_LIBRARY[hash]) return;
+  const target = document.getElementById("gallery-" + hash);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+  target.classList.add("highlight");
+  setTimeout(() => target.classList.remove("highlight"), 2400);
+}
+
 loadNickname();
 wireHandlers();
+renderGallery();
+handleGalleryHash();
+window.addEventListener("hashchange", handleGalleryHash);
