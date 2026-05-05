@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STTI 学生孪梗指标｜大学生校园梗问卷 &amp; 数字分身</title>
+    <meta
+      name="description"
+      content="STTI（Student Twin Type Indicator；ST 为 Student 缩写，TI 为 Type Indicator，学生孪梗指标）娱乐静态问卷：专为大学生脑洞题库，匹配 ZB8/1T4/BL8 等校园梗分身、标签、娱乐 MBTI、SVG 小脸与朋友圈/小红书文案。纯本地，不上传答卷。"
+    />
+    <meta name="keywords" content="STTI,SBTI,大学生,校园梗,人格测试,脑洞问卷,小组作业,早八" />
+    <link rel="icon" href="image/logo.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "STTI 和 MBTI / SBTI 有什么不同？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MBTI 通常指经典四字母框架；SBTI 为多维度娱乐问卷的一类实现；STTI 沿用同类静态页的版式组件，题库面向大学生校园梗，非标准化测评。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "一共有多少道题？结果要等多久？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "固定 10 题；测验与评分均在浏览器本地完成，提交后立即展示结果。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "需要注册吗？会上传答卷吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "默认不需要注册、不上传答卷。昵称可选且仅存于浏览器本地。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "结果能否代替心理咨询？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不能。本站仅供娱乐与自我吐槽，不可替代心理咨询或医学诊断。"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="nav" aria-label="主导航">
+      <div class="nav-inner">
+        <a class="nav-logo" href="#start"><img class="nav-logo-img" src="image/logo.png" width="36" height="36" alt="" /><span>STTI</span> 校园梗人格</a>
+        <div class="nav-links">
+          <a href="#features">功能特点</a>
+          <a href="#about">测试介绍</a>
+          <a href="#faq">常见问题</a>
+        </div>
+        <a href="#start" id="navStartCta" class="nav-cta">开始测试</a>
+      </div>
+    </nav>
+
+    <!-- 参照 SBTI：深色 Hero + #start 锚点 -->
+    <section class="hero-section dark" id="start">
+      <div class="shell">
+        <h1>MBTI 先放放，STTI 来了。</h1>
+        <p class="subtitle">
+          面向<strong>大学生</strong>的十道情景题：早八、自习室、小组作业、生活费与死线。本地生成分身代号、娱乐四轴、校园梗匹配度、分享文案——组件结构对齐经典 MBTI/SBTI 静态结果页。
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" id="startBtn" class="btn-primary">开始测试</button>
+          <button type="button" class="btn-secondary" data-open-test>再测一轮</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section" id="features">
+      <div class="shell">
+        <h2 class="section-title">功能特点</h2>
+        <p class="section-subtitle">娱乐向校园梗分析，帮助你截图发群</p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>大学生脑洞题库</h3>
+            <p>凌晨三点、隐身、选课汗流浃背、小组戏份……不专业，但 meme 浓度高。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>梗代号匹配</h3>
+            <p>ZB8 / 1T4 / BL8 / SXY / TDL / GJ8 / JHBH 等格位 + 6L6 兜底，附「匹配度」吐槽条。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>隐私与静态</h3>
+            <p>计分与文案全在浏览器完成；无账号、默认不上传答卷（除非你自行改代码接统计）。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="shell">
+        <h2 class="section-title">测试介绍</h2>
+        <p class="section-subtitle">STTI 是什么、怎么测、结果页长啥样</p>
+        <div class="about-prose">
+          <p>
+            <strong>STTI</strong>（学生孪梗指标；英文全名
+            <strong>Student Twin Type Indicator</strong>：其中 <strong>ST</strong> 为
+            <strong>Student</strong> 的缩写，<strong>TI</strong> 为 Type Indicator，「Twin」对齐本站「校园梗孪生分身」）——是模仿 SBTI/MBTI 类<strong>结果页组件结构</strong>的静态同人站：同样的导航、深色首屏、功能特点、介绍、FAQ、全屏测评分层、结果区「海报位 + 类型名 + 匹配条 + 解读 + 维度列表 + 底部操作条」。
+          </p>
+          <p>
+            共 <strong>10 题</strong>，须全部作答后提交。题目顺序每次进入测验会打乱。结果含<strong>娱乐向四字母</strong>（由四维倾向粗算）、<strong>校园梗主类型</strong>与<strong>可视化维度条</strong>，并可一键复制朋友圈 / 小红书文案。
+          </p>
+          <p>
+            「校园梗分身」由选项权重本地加权；你太平均时会落入 <strong>6L6</strong>。全部内容<strong>仅供玩梗</strong>，不可替代心理咨询或职业测评。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="shell">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 STTI 怎么用、结果怎么理解</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>STTI 和 MBTI / SBTI 有什么不同？</summary>
+            <p class="faq-answer">
+              MBTI 通常指经典四字母框架；SBTI 是多维度娱乐问卷站的一种实现。STTI 借用了同类静态站的<strong>版式组件</strong>，题目与类型库专为<strong>大学生校园梗</strong>编写，不承担任何标准化测评职能。
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>一共有多少道题？要等多久结果？</summary>
+            <p class="faq-answer">固定 10 题；全部为浏览器本地即刻出结果，无需联网推理。</p>
+          </details>
+          <details class="faq-item">
+            <summary>需要注册吗？答案会上传吗？</summary>
+            <p class="faq-answer">
+              不需要注册。默认不向服务器提交答卷；昵称仅可选用 localStorage 存在本机浏览器。
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>结果准吗？能代替心理咨询吗？</summary>
+            <p class="faq-answer">不能。本页仅供娱乐与自我吐槽，不构成心理诊断或职业选拔依据。</p>
+          </details>
+          <details class="faq-item">
+            <summary>可以重新测试吗？顺序会变吗？</summary>
+            <p class="faq-answer">可以。结果页选「重新测试」或关掉浮层再从首屏进入；题目顺序会重新打乱。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 参照 SBTI：dialog + shell 包裹测验/结果 -->
+    <div
+      id="testLayer"
+      class="test-layer"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="STTI 大学生校园梗问卷"
+    >
+      <button type="button" id="testLayerCloseBtn" class="test-layer-close" aria-label="关闭测试" title="关闭">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="test-layer-scroll">
+        <section id="test" class="screen active">
+          <div class="shell">
+            <div class="test-wrap">
+              <div class="topbar">
+                <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+                <div class="progress-text" id="progressText">0 / 10</div>
+              </div>
+              <label class="field-label" for="nicknameInput">昵称（选填，最多 24 字，写入分享文案）</label>
+              <input
+                id="nicknameInput"
+                class="nickname-input"
+                type="text"
+                maxlength="24"
+                placeholder="例如：早八宣传科科长"
+                autocomplete="nickname"
+              />
+              <div id="questionList" class="question-list"></div>
+              <div class="actions-bottom">
+                <div class="hint" id="testHint">全选完才会放行。世界已经够乱了，起码把题做完整。</div>
+                <div class="test-btn-group">
+                  <button type="button" id="backIntroBtn" class="btn-secondary">返回首页</button>
+                  <button type="button" id="submitBtn" class="btn-primary" disabled>提交并查看结果</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="result" class="screen">
+          <div class="shell">
+            <div class="result-wrap">
+              <div class="result-layout">
+                <div class="result-top">
+                  <div class="poster-box" id="posterBox">
+                    <div id="avatarSlot" class="poster-image avatar-svg-wrap" aria-label="程序化头像"></div>
+                    <div id="posterCaption" class="poster-caption">你的校园梗分身形象（SVG 种子生成）</div>
+                  </div>
+                  <div class="type-box">
+                    <div class="type-kicker" id="resultModeKicker">你的主类型</div>
+                    <div class="type-name" id="resultTypeName">————</div>
+                    <div class="match" id="matchBadge">匹配度 ——</div>
+                    <div class="type-subname" id="resultTypeSub"></div>
+                    <div id="tagRow" class="tag-row" aria-label="标签"></div>
+                  </div>
+                </div>
+
+                <div class="analysis-box">
+                  <h3>该人格的简单解读</h3>
+                  <p id="resultDesc"></p>
+                </div>
+
+                <div class="dim-box">
+                  <h3>四维度倾向（娱乐向）</h3>
+                  <p class="dim-box-note">以下为经典 MBTI 式四轴示意，并非正式施测；与上方校园梗代号独立计算。</p>
+                  <div id="dimList" class="dim-list"></div>
+                </div>
+
+                <div class="analysis-box">
+                  <h3>纯属胡扯的择业脑洞</h3>
+                  <div id="careerBlock"></div>
+                </div>
+
+                <div class="analysis-box">
+                  <h3>可复制分享文案</h3>
+                  <p class="dim-box-note">点击下方按钮复制到剪贴板（部分浏览器在非 HTTPS 环境下可能失败）。</p>
+                  <div id="momentCopy" class="copy-block"></div>
+                  <div class="copy-row"><button type="button" class="copy-btn" data-copy-target="momentCopy">复制朋友圈版</button></div>
+                  <div id="xhsCopy" class="copy-block"></div>
+                  <div class="copy-row"><button type="button" class="copy-btn" data-copy-target="xhsCopy">复制小红书版</button></div>
+                </div>
+
+                <div class="note-box">
+                  <h3>友情提示</h3>
+                  <p id="funNote">
+                    本测试仅供娱乐，别拿它当诊断、面试、相亲、分手、算命或人生判决书。STTI 非 SBTI/MBTI 官方；若读着不适，直接「重新测试」。
+                  </p>
+                </div>
+
+                <details class="author-box">
+                  <summary>关于本子站</summary>
+                  <div class="author-content">
+                    <p>STTI 是爱好者参照开源 SBTI-test 页面的<strong>组件布局</strong>写的静态同人，题库与类型库均为原创段子向。</p>
+                    <p>欢迎改代码、fork、自用发宿舍群；勿用于冒犯他人或虚假宣传「科学测评」。</p>
+                  </div>
+                </details>
+              </div>
+
+              <div class="result-actions">
+                <div class="test-btn-group">
+                  <button type="button" id="restartBtn" class="btn-secondary">重新测试</button>
+                  <button type="button" id="toTopBtn" class="btn-primary">回到首页</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="shell">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>关于 STTI</h4>
+            <ul>
+              <li><a href="#features">功能特点</a></li>
+              <li><a href="#about">测试介绍</a></li>
+              <li><a href="#faq">常见问题</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>占位相关链接</h4>
+            <ul>
+              <li><a href="#start">开始测试</a></li>
+              <li><a href="https://github.com/SBTIAI/sbti-test" rel="noopener noreferrer" target="_blank">布局参考：SBTIAI/sbti-test</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>更多</h4>
+            <ul>
+              <li><a href="#faq">结果免责</a></li>
+              <li><a href="#about">适用对象：大学生梗</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 STTI 学生孪梗指标. 仅供娱乐，请勿当真。</p>
+          <div class="friend-links">
+            <a href="#start">回顶测一次</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
