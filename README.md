@@ -98,8 +98,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/jasper0507/sbti.git
-cd sbti
+git clone https://github.com/jasper0507/stti.git
+cd stti
 
 # 方式一：双击 index.html（部分浏览器剪贴板 API 受限）
 # 方式二：用本地服务器
@@ -217,8 +217,8 @@ Visit: **https://sbti-peach.vercel.app**
 
 ```bash
 # Clone the repo
-git clone https://github.com/jasper0507/sbti.git
-cd sbti
+git clone https://github.com/jasper0507/stti.git
+cd stti
 
 # Option 1: Double-click index.html (clipboard API may be limited in some browsers)
 # Option 2: Use a local server
