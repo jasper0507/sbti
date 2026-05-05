@@ -661,7 +661,13 @@ function wireHandlers() {
   const startBtn = document.getElementById("startBtn");
   if (startBtn) startBtn.addEventListener("click", openTestLayer);
 
-  document.querySelectorAll("[data-open-test]").forEach((el) => el.addEventListener("click", openTestLayer));
+  // 没有测试历史时隐藏「再测一轮」按钮
+  const retakeBtns = document.querySelectorAll("[data-open-test]");
+  const hasHistory = !!localStorage.getItem(NS + ":nick");
+  retakeBtns.forEach((el) => {
+    el.addEventListener("click", openTestLayer);
+    if (!hasHistory) el.classList.add("hidden");
+  });
 
   document.getElementById("testLayerCloseBtn").addEventListener("click", closeTestLayer);
   document.getElementById("backIntroBtn").addEventListener("click", closeTestLayer);

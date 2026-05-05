@@ -1114,3 +1114,6 @@ body.test-layer-open {
 .match {
   flex-wrap: wrap;
 }
+.hidden {
+  display: none;
+}
