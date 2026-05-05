@@ -8,6 +8,16 @@ const NS = "stti:v1";
 /** 与用户梗库对齐的类型 key（勿改顺序：影响兜底展示） */
 const STTI_KEYS = ["ZB8", "1T4", "BL8", "SXY", "TDL", "GJ8", "JHBH"];
 
+const TYPE_IMAGE_SRC = {
+  ZB8: "image/types/zb8.png",
+  "1T4": "image/types/1t4.png",
+  BL8: "image/types/bl8.png",
+  SXY: "image/types/sxy.png",
+  TDL: "image/types/tdl.png",
+  GJ8: "image/types/gj8.png",
+  JHBH: "image/types/jhbh.png",
+};
+
 const TYPE_LIBRARY = {
   ZB8: {
     code: "ZB8",
@@ -401,6 +411,12 @@ function avatarSvg(seedStr) {
 </svg>`.trim();
 }
 
+function renderAvatar(twin, seed) {
+  const src = TYPE_IMAGE_SRC[twin.code];
+  if (!src) return avatarSvg(seed);
+  return `<img class="poster-avatar-img" src="${src}" alt="${twin.code} ${twin.cn} 分身形象" loading="eager" decoding="async" />`;
+}
+
 function buildSocialCopy(nickname, mbti, twin, tags, careers) {
   const who = nickname.trim() || "神秘同学";
   const tagLine = tags.slice(0, 5).join(" · ");
@@ -543,8 +559,8 @@ function computeAndRenderResult() {
   const careers = CAREERS_BY_STTI[twin.code] || CAREERS_BY_STTI["6L6"];
   const seed = JSON.stringify({ a: appState.answers, o: appState.shuffledQuestions.map((q) => q.id).join("|") });
 
-  document.getElementById("avatarSlot").innerHTML = avatarSvg(seed);
-  document.getElementById("posterCaption").textContent = `种子已烘焙：${twin.code} 专属简笔画分身`;
+  document.getElementById("avatarSlot").innerHTML = renderAvatar(twin, seed);
+  document.getElementById("posterCaption").textContent = `${twin.code} 专属校园梗漫画分身`;
 
   const kickerEl = document.getElementById("resultModeKicker");
   kickerEl.textContent = picked.pickedKey === "6L6" ? "系统兜底" : "你的主类型";

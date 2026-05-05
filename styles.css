@@ -587,6 +587,12 @@ body.test-layer-open {
   width: 100%;
   min-height: 200px;
   max-height: 400px;
+  border-radius: 8px;
+}
+.poster-avatar-img {
+  display: block;
+  width: 100%;
+  max-height: 400px;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -868,8 +874,12 @@ body.test-layer-open {
   margin-bottom: 16px;
 }
 .avatar-svg-wrap.poster-image {
-  object-fit: unset;
   min-height: 0;
+}
+.avatar-svg-wrap svg {
+  display: block;
+  width: 100%;
+  max-height: 400px;
 }
 .dim-box-note {
   font-size: 13px;
