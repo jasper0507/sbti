@@ -869,6 +869,31 @@ body.test-layer-open {
   }
 }
 
+.btn-poster {
+  display: inline-block;
+  background: var(--white);
+  color: var(--yellow);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.16px;
+  text-decoration: none;
+  border: 1px solid var(--yellow);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+  font-family: inherit;
+}
+.btn-poster:hover {
+  background: var(--focus-blue);
+  color: var(--white);
+  border-color: var(--focus-blue);
+}
+.btn-poster:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ——— STTI 扩展（非上游模板） ——— */
 .about-section > .shell > .section-title {
   margin-bottom: 16px;

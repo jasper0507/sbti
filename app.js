@@ -591,6 +591,7 @@ function computeAndRenderResult() {
   document.getElementById("momentCopy").textContent = copy.moment;
   document.getElementById("xhsCopy").textContent = `【标题】${copy.xhsTitle}\n\n${copy.xhsBody}`;
 
+  appState._lastPickedKey = picked.pickedKey;
   setupCopyButtons();
   showScreen("result");
 }
@@ -618,7 +619,44 @@ function setupCopyButtons() {
   });
 }
 
+function handlePosterExport() {
+  if (typeof html2canvas === "undefined") {
+    alert("海报生成组件加载失败，请检查网络后刷新页面重试。");
+    return;
+  }
+
+  const btn = document.getElementById("posterBtn");
+  const target = document.querySelector("#result .result-wrap");
+  if (!btn || !target) return;
+
+  btn.disabled = true;
+  btn.textContent = "生成中...";
+
+  html2canvas(target, {
+    useCORS: true,
+    scale: 2,
+    backgroundColor: "#ffffff",
+  })
+    .then((canvas) => {
+      const picked = appState._lastPickedKey || "STTI";
+      const link = document.createElement("a");
+      link.download = `STTI-结果-${picked}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    })
+    .catch(() => {
+      alert("海报生成失败，请稍后重试。");
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = "保存海报";
+    });
+}
+
 function wireHandlers() {
+  const posterBtn = document.getElementById("posterBtn");
+  if (posterBtn) posterBtn.addEventListener("click", handlePosterExport);
+
   const startBtn = document.getElementById("startBtn");
   if (startBtn) startBtn.addEventListener("click", openTestLayer);
 
