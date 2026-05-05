@@ -91,10 +91,10 @@ const CAREERS_BY_STTI = {
  * 题库权重设计（娱乐向，非临床量表）
  *
  * scores 四轴顺序与 mbtiFromAcc / renderDimList 一致：
- *   [0] E−I+  正值→外向 E，负值→内向 I
- *   [1] N−S+  正值→直觉 N，负值→实感 S
- *   [2] T−F+  正值→思考 T，负值→情感 F
- *   [3] J−P+  正值→判断 J，负值→感知 P
+ *   [0] 肝度（学习投入）  正值→卷王模式，负值→佛系摸鱼
+ *   [1] 社交电量（人际活跃）  正值→社交悍匪，负值→社恐隐身
+ *   [2] 消费理性（花钱风格）  正值→精算大师，负值→月光战士
+ *   [3] 拖延指数（行动节奏）  正值→提前交卷，负值→deadline 才是生产力
  * 单题只在 1～2 个轴上给较强载荷（约 0.9～1.4），其余轴用 ±0.2～0.5 微调，避免「一选定全局」。
  *
  * stti：与选项行为一致；单题「主梗」1.4～4.2，「辅梗」0.4～1.0；与行为明显相悖的梗可小幅为负（如强储蓄拉低 BL8）。
@@ -273,7 +273,7 @@ function pickSttiType(answers) {
 }
 
 function mbtiFromAcc(acc) {
-  const letters = [acc[0] >= 0 ? "E" : "I", acc[1] >= 0 ? "N" : "S", acc[2] >= 0 ? "T" : "F", acc[3] >= 0 ? "J" : "P"];
+  const letters = [acc[0] >= 0 ? "L" : "F", acc[1] >= 0 ? "S" : "Y", acc[2] >= 0 ? "L" : "C", acc[3] >= 0 ? "T" : "D"];
   return letters.join("");
 }
 
@@ -281,41 +281,41 @@ function clamp(n, lo, hi) {
   return Math.min(hi, Math.max(lo, n));
 }
 
-/** MBTI 式四维度进度条（娱乐） */
+/** 校园语境四维度进度条（娱乐） */
 function renderDimList(acc) {
-  const [ei, ns, tf, jp] = acc;
+  const [gan, she, xiao, tuo] = acc;
   const axes = [
     {
-      name: "能量指向（E / I）",
-      neg: "内向 I",
-      pos: "外向 E",
-      v: ei,
-      nTxt: "更偏：从独处与小圈交流里回血。",
-      pTxt: "更偏：靠互动、开口说、边走边想恢复电量。",
+      name: "肝度（学习投入）",
+      neg: "佛系摸鱼",
+      pos: "卷王模式",
+      v: gan,
+      nTxt: "更偏：能躺则躺，先保住发量和好心情。",
+      pTxt: "更偏：图书馆常驻嘉宾，卷到室友都怕。",
     },
     {
-      name: "信息偏好（S / N）",
-      neg: "实感 S",
-      pos: "直觉 N",
-      v: ns,
-      nTxt: "更偏：细节、事实、可操作的具体步骤。",
-      pTxt: "更偏：联想、隐喻、结构与可能性。",
+      name: "社交电量（人际活跃）",
+      neg: "社恐隐身",
+      pos: "社交悍匪",
+      v: she,
+      nTxt: "更偏：自动隐身术点满，能打字绝不打电话。",
+      pTxt: "更偏：走到哪都有认识的人，朋友圈永动机。",
     },
     {
-      name: "判断依据（T / F）",
-      neg: "情感 F",
-      pos: "思考 T",
-      v: tf,
-      nTxt: "更偏：关系、语气、照护与价值取向。",
-      pTxt: "更偏：逻辑、利弊、规则和效率。",
+      name: "消费理性（花钱风格）",
+      neg: "月光战士",
+      pos: "精算大师",
+      v: xiao,
+      nTxt: "更偏：月底账单一开，「钱去哪了」未解之谜。",
+      pTxt: "更偏：每一笔都有据可查，连奶茶都要算性价比。",
     },
     {
-      name: "生活方式（J / P）",
-      neg: "感知 P",
-      pos: "判断 J",
-      v: jp,
-      nTxt: "更偏：开放选项、临场调整、晚点再定局。",
-      pTxt: "更偏：计划、定局、按部就班推进。",
+      name: "拖延指数（行动节奏）",
+      neg: "deadline 才是生产力",
+      pos: "提前交卷选手",
+      v: tuo,
+      nTxt: "更偏：DDL 是第一生产力，越到最后一刻越能超常发挥。",
+      pTxt: "更偏：作业一布置就开始动笔，DDL 与我无关。",
     },
   ];
 
@@ -420,10 +420,10 @@ function renderAvatar(twin, seed) {
 function buildSocialCopy(nickname, mbti, twin, tags, careers) {
   const who = nickname.trim() || "神秘同学";
   const tagLine = tags.slice(0, 5).join(" · ");
-  const moment = `${who} 刚测完 STTI（Student Twin Type Indicator，ST=Student；学生孪梗指标），校园梗分身【${twin.code}｜${twin.cn}】，娱乐向 MBTI：${mbti}。标签：${tagLine}。声明：纯属玩耍，不构成任何专业判断。`;
+  const moment = `${who} 刚测完 STTI（Student Twin Type Indicator，ST=Student；学生孪梗指标），校园梗分身【${twin.code}｜${twin.cn}】，校园四维：${mbti}。标签：${tagLine}。声明：纯属玩耍，不构成任何专业判断。`;
 
   const xhsTitle = `大学生精神状态问卷｜我测出了 ${twin.code} ${twin.cn}`;
-  const xhsBody = `刚做完「STTI — 学生孪梗指标」✨全名 Student Twin Type Indicator（ST=Student 缩写，TI=Type Indicator）。面向大学生的静态脑洞站，版式碰瓷 SBTI 那种。\n\n我的校园梗分身：${twin.code}｜${twin.cn}\n娱乐向 MBTI：${mbti}\n标签：${tagLine}\n\n职业脑洞（拍着玩）：\n- ${careers[0]}\n- ${careers[1]}\n\n一句话：${twin.intro}\n\n⚠️ 娱乐测试，别太当真。\n\n#STTI #学生孪梗 #大学生 #校园梗 #小组作业 #早八 #MBTI玩梗`;
+  const xhsBody = `刚做完「STTI — 学生孪梗指标」✨全名 Student Twin Type Indicator（ST=Student 缩写，TI=Type Indicator）。面向大学生的静态脑洞站，版式碰瓷 SBTI 那种。\n\n我的校园梗分身：${twin.code}｜${twin.cn}\n校园四维：${mbti}\n标签：${tagLine}\n\n职业脑洞（拍着玩）：\n- ${careers[0]}\n- ${careers[1]}\n\n一句话：${twin.intro}\n\n⚠️ 娱乐测试，别太当真。\n\n#STTI #学生孪梗 #大学生 #校园梗 #小组作业 #早八 #MBTI玩梗`;
 
   return { moment, xhsTitle, xhsBody };
 }
@@ -566,7 +566,7 @@ function computeAndRenderResult() {
   kickerEl.textContent = picked.pickedKey === "6L6" ? "系统兜底" : "你的主类型";
 
   document.getElementById("resultTypeName").textContent = `${twin.code}（${twin.cn}）`;
-  document.getElementById("matchBadge").textContent = `校园梗匹配度 ${picked.matchPct}% · 娱乐 MBTI：${mbti}`;
+  document.getElementById("matchBadge").textContent = `校园梗匹配度 ${picked.matchPct}% · 校园四维：${mbti}`;
 
   const introShort = twin.intro.length > 200 ? twin.intro.slice(0, 200).trimEnd() + "…" : twin.intro;
   document.getElementById("resultTypeSub").textContent = introShort;
