@@ -592,6 +592,7 @@ function computeAndRenderResult() {
   document.getElementById("xhsCopy").textContent = `【标题】${copy.xhsTitle}\n\n${copy.xhsBody}`;
 
   appState._lastPickedKey = picked.pickedKey;
+  window.location.hash = picked.pickedKey;
   setupCopyButtons();
   showScreen("result");
 }
