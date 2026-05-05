@@ -628,6 +628,7 @@ function computeAndRenderResult() {
 
   appState._lastPickedKey = picked.pickedKey;
   window.location.hash = picked.pickedKey;
+  try { localStorage.setItem(NS + ":completed", "1"); } catch (_) {}
   setupCopyButtons();
   showScreen("result");
 }
@@ -698,7 +699,7 @@ function wireHandlers() {
 
   // 没有测试历史时隐藏「再测一轮」按钮
   const retakeBtns = document.querySelectorAll("[data-open-test]");
-  const hasHistory = !!localStorage.getItem(NS + ":nick");
+  const hasHistory = !!localStorage.getItem(NS + ":nick") || !!localStorage.getItem(NS + ":completed");
   retakeBtns.forEach((el) => {
     el.addEventListener("click", openTestLayer);
     if (!hasHistory) el.classList.add("hidden");
